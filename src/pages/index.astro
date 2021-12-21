@@ -1,0 +1,220 @@
+---
+// Component Imports
+import MainHead from '../components/MainHead.astro';
+import DivyakshTitle from '../components/Home/DivyakshTitle.astro';
+import Button from '../components/Button/index.jsx';
+import Nav from '../components/Nav/index.jsx';
+import Footer from '../components/Footer/index.jsx';
+import PortfolioPreview from '../components/PortfolioPreview/index.jsx';
+
+// Data Fetching: List all Markdown posts in the repo.
+const projects = Astro.fetchContent('./project/**/*.md');
+const featuredProject = projects[0];
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+<html lang="en">
+  <head>
+    <MainHead />
+    <style lang="scss">
+      $w-s: 750px;
+
+      .hero {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        @media (min-width: $w-s) {
+          height: 45vw;
+        }
+      }
+
+      .img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .gradient,
+      .gradient2 {
+        background-image: url('/assets/mesh-gradient.jpg');
+        background-size: cover;
+        pointer-events: none;
+        mix-blend-mode: screen;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+      }
+
+      .gradient2 {
+        mix-blend-mode: multiply;
+        background-size: cover;
+      }
+
+      .overlay {
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        width: 95%;
+        height: 100%;
+        z-index: 10;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        // padding-left: 2rem;
+        
+        .title-container {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .profile-pic {
+          margin-left: auto;
+        }
+
+
+        @media (min-width: $w-s) {
+          width: 90%;
+          // padding-left: 4rem;
+        }
+      }
+
+      .grid {
+        display: grid;
+        grid-gap: 2rem;
+
+        @media (min-width: 1200px) {
+          grid-template-columns: 2fr 1fr;
+        }
+      }
+
+      .role {
+        position: relative;
+        display: inline-block;
+        // font-weight: 900;
+        color: var(--t-bg);
+        background-color: var(--t-fg);
+        padding: 0.25em 0.5em;
+        z-index: 2;
+
+        @media (min-width: $w-s) {
+          font-size: var(--f-u3);
+        }
+
+        + .role {
+          margin-left: 1em;
+        }
+
+        &:nth-of-type(1) {
+          .invert {
+            // background-color: var(--c-gray);
+          }
+        }
+
+        &:nth-of-type(2) {
+          .invert {
+            // background-color: var(--c-blue);
+          }
+        }
+
+        &:nth-of-type(3) {
+          .invert {
+            // background-color: var(--c-green);
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+          .invert {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            
+          }
+        }
+      }
+
+      .invert {
+        position: absolute;
+        color: var(--t-active);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        clip-path: polygon(0% 100%, 100% 100%, 100% 200%, 0% 200%);
+        transition: clip-path cubic-bezier(0.4, 0, 0.5, 1) 300ms;
+      }
+
+      .desc {
+        font-size: var(--f-u2);
+        margin-top: 1.5rem;
+        margin-bottom: 0;
+      }
+
+      .bio {
+        line-height: 2;
+        margin-bottom: 2rem;
+
+        > span:first-of-type {
+          line-height: 1;
+          margin-bottom: 0.5em;
+          display: block;
+          // font-weight: 700;
+          font-size: var(--f-u4);
+        }
+      }
+      .side-bio {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        div {
+          margin-right: 2rem;
+          h2 {
+            margin-bottom: 0;
+          }
+          ul {
+            margin-top: 0;
+            padding-left: 1rem;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body class="wrapper">
+    <Nav />
+    <DivyakshTitle />
+    <main class="mt4 mb4">
+      <div class="grid">
+        <div class="section">
+          <h3 class="sectionTitle">Patent</h3>
+          <PortfolioPreview project={featuredProject} />
+          <div class="tac mt4">
+            <a href="/projects">
+              <Button>View All</Button>
+            </a>
+          </div>
+        </div>
+        <div class="section">
+          <h3 class="sectionTitle">About me</h3>
+          <p class="bio">
+            <span>Hello!</span> I’m Divyaksh Shukla, and this is my portfolio website.
+            I am a Software Engineer who wants to pursue Data Science. I'm currently doing an M.Tech in Data Science
+            Engineering from BITS Pilani WILP course.
+          </p>
+          <p>
+          </p>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

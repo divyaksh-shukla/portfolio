@@ -1,0 +1,40 @@
+---
+import MainHead from '../components/MainHead.astro';
+import Footer from '../components/Footer/index.jsx';
+import Nav from '../components/Nav/index.jsx';
+import DiaryLog from '../components/DiaryLog.astro';
+//import DiaryLog from '../components/DiaryLog/index.jsx';
+// import PortfolioPreview from '../components/PortfolioPreview/index.jsx';
+
+interface MarkdownFrontmatter {
+  publishDate: number;
+}
+
+const diaryLogs = Astro.fetchContent<MarkdownFrontmatter>('./diaryLog/**/*.md')
+  .filter(({ publishDate }) => !!publishDate)
+  .sort((a, b) => new Date(b.publishDate).valueOf() - new Date(a.publishDate).valueOf());
+// const diaryLogs = Astro.fetchContent('./diaryLog/**/*.md');
+---
+<html lang="en">
+  <head>
+    <MainHead title="Diary Log | Divyaksh Shukla" />
+    <style lang="scss">
+      .grid {
+        display: grid;
+        grid-gap: 3rem;
+      }
+    </style>
+  </head>
+  <body class="wrapper">
+    <Nav />
+    <div>
+      <h1 class="title">Diary Log Entries</h1>
+      <div class="grid">
+        {diaryLogs.map((diaryLog) => (
+          <DiaryLog log={diaryLog} />
+        ))}
+      </div>
+    </div>
+    <Footer />
+  </body>
+</html>

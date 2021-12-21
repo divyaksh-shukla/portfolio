@@ -1,0 +1,225 @@
+---
+---
+
+<style lang="scss">
+    $w-s: 750px;
+
+    .divyaksh-title-container {
+        display: flex;
+        min-height: calc(100vh - 58px);
+        font-family: 'Open Sans', sans-serif;
+        .divyaksh-title {
+            align-self: center;
+            display: grid;
+            column-gap: 4em;
+            grid-template-areas: 
+            "title info"
+            "title education"
+            "pic roles"
+            "pic desc"
+            "pic bio"
+            "pic bio";
+            @media (max-width: $w-s) {
+                grid-template-areas: 
+                "title pic pic"
+                "info info info"
+                "education education education"
+                "roles roles roles"
+                "desc desc desc"
+                "bio bio bio";
+            }
+            .title {
+                margin: 0px;
+                grid-area: title;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 530;
+                display: grid;
+                font-size: var(--f-u9);
+                @media (max-width: $w-s) {
+                    font-size: var(--f-u7);
+                }
+                .subtitle {
+                    font-weight: 400;
+                    font-size: var(--f-d5);
+                    letter-spacing: 2px;
+                    align-self: end;
+                }
+                
+            }
+            .mobile {
+                display: none;
+                @media (max-width: $w-s) {
+                    display: block;
+                }
+            }
+            .desktop {
+                display: block;
+                @media (max-width: $w-s) {
+                    display: none;
+                }
+            }
+            .roles {
+                grid-area: roles;
+                margin: 1em 0;
+                font-weight: 600;
+                .role {
+                    background-color: var(--c-grey);
+                    color: var(--t-bg);
+                    padding: 0.4em 0.8em;
+                    
+                    cursor: default;
+                    transition: color linear 150ms;
+                    &:hover {
+                        color: var(--t-active);
+                    }
+                }
+                @media (max-width: $w-s) {
+                    font-size: var(--f-d1);
+                }
+                .last {
+                    border-radius: 0px 20px 20px 0px;
+                    @media (max-width: $w-s) {
+                        border-radius: 0px;
+                    }
+                }
+                .first {
+                    border-radius: 20px 0px 0px 20px;
+                    @media (max-width: $w-s) {
+                        border-radius: 0px;
+                    }
+                }
+            }
+            .education-list {
+                grid-area: education;
+                font-weight: lighter;
+                font-size: var(--f-u3);
+                background-color: wheat;
+                padding: 4px 12px;
+                border-radius: 5px;
+                @media (max-width: $w-s) {
+                    font-size: var(--f-d2);
+                    font-weight: normal;
+                }
+            }
+            .description {
+                grid-area: desc;
+                font-size: var(--f-u2);
+                @media (max-width: $w-s) {
+                    font-size: var(--f-d1);
+                }
+            }
+            .profile-pic {
+                grid-area: pic;
+                img {
+                    max-height: 350px;
+                    border-radius: 50%;
+                }
+            }
+            .personal-info {
+                grid-area: info;
+            }
+            .side-bio {
+                display: flex;
+                flex-direction: row;
+                grid-area: bio;
+                grid-column-gap: 2em;
+                @media (max-width: $w-s) {
+                    display: flex;
+                    flex-wrap: wrap;
+                    // flex-direction: column;
+                    font-size: var(--f-d1);
+                }
+                h2 {
+                    margin-bottom: 0px;
+                    font-weight: 400;
+                }
+                ul {
+                    font-weight: 100;
+                    padding-left: 4px;
+                    list-style-type: none;
+                    margin-top: 4px;
+                    li {
+                        + li {
+                            padding-top: 4px;
+                        }
+                    }
+                    @media (max-width: $w-s) {
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+    }
+</style>
+
+<div class="divyaksh-title-container">
+    <div class="divyaksh-title">
+        <h1 class="title">
+            <span class="subtitle">Portfolio of</span>
+            Divyaksh Shukla
+        </h1>
+        <div class="profile-pic">
+            <img src="/profile-pic.jpg" alt="Divyaksh Shukla">
+        </div>
+        <div class="personal-info">
+            📞 +91-9611519000&nbsp;&nbsp;&nbsp;&nbsp;✉️ divyaksh.shukla@gmail.com
+        </div>
+        <div class="education-list">
+            🎓 Pursuing M.Tech (Data Science and Engineering) WILP BITS Pilani<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.E. (Computer Science) PESIT South Campus
+        </div>
+        <div class="roles desktop">
+            <span class="role first">👨‍💻 Software Developer</span>
+            <span class="role">🔧 Full-Stack DevOps Engineer</span>
+            <span class="role last">✍️ Drawing</span>
+        </div>
+        <div class="roles mobile">
+            <div class="role first">👨‍💻 Software Developer</div>
+            <div class="role">🔧 Full-Stack DevOps Engineer</div>
+            <div class="role last">✍️ Drawing</div>
+        </div>
+        <div class="description">
+            Lover of Machine Learning, Recommendation systems, Big Data and books 📖
+        </div>
+        <div class="side-bio">
+            <div>
+                <h2>Coding</h2>
+                <ul>
+                <li>Python</li>
+                <li>Java</li>
+                <li>Javascript</li>
+                <li>C / C++</li>
+                <li>SQL</li>
+                <li>C#</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Industry Knowledge</h2>
+                <ul>
+                <li>Deep Learning</li>
+                <li>Cloud Computing</li>
+                <li>Data Science</li>
+                <li>Data Mining</li>
+                <li>Web Applications</li>
+                <li>CI / CD pipelining</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Tools &amp; Technologies</h2>
+                <ul>
+                <li>Tensorflow</li>
+                <li>Keras</li>
+                <li>PyTorch</li>
+                <li>Pandas</li>
+                <li>seaborn</li>
+                <li>Tableau</li>
+                <li>React.js</li>
+                <li><mdb-icon fab icon="angular"></mdb-icon>Angular</li>
+
+                <li>HTML5</li>
+                <li>Microsoft Excel, Word &amp; Powerpoint</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

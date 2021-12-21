@@ -1,0 +1,31 @@
+---
+import moment from 'moment';
+const { log } = Astro.props;
+---
+
+<style lang="scss">
+  .card {
+    background-color: white;
+    padding: 2ch;
+    border-radius: 1ch;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    .card-title {
+      width: 100%;
+      display: flex;
+      small {
+        margin-left: auto;
+        align-self: center;
+      }
+    }
+  }
+</style>
+
+<div class="card">
+  <div class="card-title">
+    <h2 class="mt1 mb1">{log.title}</h2>
+    <small>{moment(log.publishDate).fromNow()}</small>
+  </div>
+  
+  <div>{log.astro.html}</div>
+</div>

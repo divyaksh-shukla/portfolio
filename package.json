@@ -1,0 +1,21 @@
+{
+  "name": "@divyakshshukla/portfolio",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "publish": "bash ./publish.sh",
+    "bp": "astro build && bash ./publish.sh"
+  },
+  "devDependencies": {
+    "astro": "^0.20.12",
+    "@astrojs/renderer-preact": "^0.2.2"
+  },
+  "dependencies": {
+    "html-react-parser": "^1.4.1",
+    "moment": "^2.29.1"
+  }
+}
